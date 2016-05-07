@@ -320,6 +320,7 @@ suite('Unflatten', function() {
       }), {
           'hello.0.world.again': 'foo'
         , 'hello.1.lorem': 'ipsum'
+        , 'hello.length$': 2
       })
     })
   })
@@ -416,6 +417,7 @@ suite('Arrays', function() {
     assert.deepEqual({
         'a.0': 'foo'
       , 'a.1': 'bar'
+      , 'a.length$': 2
     }, flatten({
       a: ['foo', 'bar']
     }))
@@ -427,6 +429,7 @@ suite('Arrays', function() {
     }, unflatten({
         'a.0': 'foo'
       , 'a.1': 'bar'
+      , 'a.length$': 2
     }))
   })
 

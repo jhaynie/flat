@@ -23,6 +23,10 @@ function flatten(target, opts) {
         type === "[object Array]"
       )
 
+      if (!prev && !opts.safe && Array.isArray(value)) {
+         output[key + '.length$'] = value.length;
+      }
+
       var newKey = prev
         ? prev + delimiter + key
         : key
@@ -32,10 +36,12 @@ function flatten(target, opts) {
       }
 
       if (!isarray && !isbuffer && isobject && Object.keys(value).length && currentDepth < maxDepth) {
-        ++currentDepth
-        return step(value, newKey)
+        ++currentDepth;
+		  return step(value, newKey)
       }
-
+		if (Array.isArray(value) && !opts.safe) {
+			output[key + '.length$'] = value.length;
+		}
       output[newKey] = value
     })
   }
@@ -74,6 +80,8 @@ function unflatten(target, opts) {
     var key1 = getkey(split.shift())
     var key2 = getkey(split[0])
     var recipient = result
+
+    if (key2 === 'length$') { return; }
 
     while (key2 !== undefined) {
       var type = Object.prototype.toString.call(recipient[key1])

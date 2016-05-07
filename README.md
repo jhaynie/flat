@@ -1,12 +1,14 @@
-# flat [![Build Status](https://secure.travis-ci.org/hughsk/flat.png?branch=master)](http://travis-ci.org/hughsk/flat)
+# flat
 
 Take a nested Javascript object and flatten it, or unflatten an object with
 delimited keys.
 
+> This is a fork of [https://github.com/hughsk/flat](Flat) which adds a special key 'length$' which is the length of an array value
+
 ## Installation
 
 ``` bash
-$ npm install flat
+$ npm install flat-with-array-length
 ```
 
 ## Methods
